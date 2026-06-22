@@ -1,0 +1,279 @@
+[2026-06-22T02:44:39.738Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-22T02:44:39.741Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-22T02:44:39.761Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-22T02:44:39.765Z] [SUCCESS] Firebase connected!
+[2026-06-22T02:44:39.769Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-22T02:44:39.773Z] [INFO] Event Bus initialized
+[2026-06-22T02:44:39.776Z] [SUCCESS] Event Bus ready!
+[2026-06-22T02:44:39.779Z] [INFO] ⚙️ Loading configuration...
+[2026-06-22T02:44:40.587Z] [ERROR] Firebase get error at configs: {}
+[2026-06-22T02:44:40.594Z] [INFO] Loaded 0 server configurations
+[2026-06-22T02:44:40.627Z] [SUCCESS] Configuration loaded!
+[2026-06-22T02:44:40.634Z] [INFO] 🔨 Initializing Engines...
+[2026-06-22T02:44:40.650Z] [SUCCESS] All engines initialized!
+[2026-06-22T02:44:40.661Z] [INFO] 🔌 Loading plugins...
+[2026-06-22T02:44:40.667Z] [INFO] Found 7 plugins
+[2026-06-22T02:44:40.709Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-22T02:44:40.721Z] [INFO] Initializing plugin: AIResponse
+[2026-06-22T02:44:40.732Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-22T02:44:40.733Z] [INFO] Initializing plugin: Analytics
+[2026-06-22T02:44:40.746Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-22T02:44:40.750Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-22T02:44:40.757Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-22T02:44:40.762Z] [INFO] Initializing plugin: Moderation
+[2026-06-22T02:44:40.774Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-22T02:44:40.779Z] [INFO] Initializing plugin: Support
+[2026-06-22T02:44:40.784Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-22T02:44:40.786Z] [INFO] Initializing plugin: Tournament
+[2026-06-22T02:44:40.793Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-22T02:44:40.795Z] [INFO] Initializing plugin: Voice
+[2026-06-22T02:44:40.798Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-22T02:44:40.799Z] [SUCCESS] 7 plugins loaded!
+[2026-06-22T02:44:40.800Z] [INFO] ⚡ Loading commands...
+[2026-06-22T02:44:40.835Z] [SUCCESS] 4 commands loaded!
+[2026-06-22T02:44:40.839Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-22T02:44:43.146Z] [SUCCESS] Logged in to Discord!
+[2026-06-22T02:44:43.200Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-22T02:44:43.211Z] [INFO] 📊 Serving 1 servers
+[2026-06-22T02:44:43.226Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-22T02:44:43.852Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-22T02:44:43.890Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-22T02:45:04.909Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:45:21.051Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:45:34.534Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:45:41.747Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:46:06.309Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:46:19.521Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:46:34.979Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:46:50.853Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:47:18.825Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-22T02:49:00.095Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-22T02:49:00.096Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-22T02:49:00.108Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-22T02:49:00.117Z] [SUCCESS] Firebase connected!
+[2026-06-22T02:49:00.121Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-22T02:49:00.123Z] [INFO] Event Bus initialized
+[2026-06-22T02:49:00.124Z] [SUCCESS] Event Bus ready!
+[2026-06-22T02:49:00.126Z] [INFO] ⚙️ Loading configuration...
+[2026-06-22T02:49:00.777Z] [INFO] Loaded 0 server configurations
+[2026-06-22T02:49:00.780Z] [SUCCESS] Configuration loaded!
+[2026-06-22T02:49:00.782Z] [INFO] 🔨 Initializing Engines...
+[2026-06-22T02:49:00.786Z] [SUCCESS] All engines initialized!
+[2026-06-22T02:49:00.794Z] [INFO] 🔌 Loading plugins...
+[2026-06-22T02:49:00.800Z] [INFO] Found 7 plugins
+[2026-06-22T02:49:00.826Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-22T02:49:00.834Z] [INFO] Initializing plugin: AIResponse
+[2026-06-22T02:49:00.848Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-22T02:49:00.866Z] [INFO] Initializing plugin: Analytics
+[2026-06-22T02:49:00.906Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-22T02:49:00.954Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-22T02:49:00.964Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-22T02:49:00.967Z] [INFO] Initializing plugin: Moderation
+[2026-06-22T02:49:00.973Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-22T02:49:00.976Z] [INFO] Initializing plugin: Support
+[2026-06-22T02:49:00.980Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-22T02:49:00.982Z] [INFO] Initializing plugin: Tournament
+[2026-06-22T02:49:00.986Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-22T02:49:00.990Z] [INFO] Initializing plugin: Voice
+[2026-06-22T02:49:00.991Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-22T02:49:00.992Z] [SUCCESS] 7 plugins loaded!
+[2026-06-22T02:49:00.993Z] [INFO] ⚡ Loading commands...
+[2026-06-22T02:49:01.009Z] [SUCCESS] 4 commands loaded!
+[2026-06-22T02:49:01.010Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-22T02:49:03.539Z] [SUCCESS] Logged in to Discord!
+[2026-06-22T02:49:03.602Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-22T02:49:03.610Z] [INFO] 📊 Serving 1 servers
+[2026-06-22T02:49:03.617Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-22T02:49:04.263Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-22T02:49:04.268Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-22T03:27:07.540Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-22T03:27:07.542Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-22T03:27:07.552Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-22T03:27:07.553Z] [SUCCESS] Firebase connected!
+[2026-06-22T03:27:07.556Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-22T03:27:07.558Z] [INFO] Event Bus initialized
+[2026-06-22T03:27:07.567Z] [SUCCESS] Event Bus ready!
+[2026-06-22T03:27:07.572Z] [INFO] ⚙️ Loading configuration...
+[2026-06-22T03:27:08.269Z] [INFO] Loaded 0 server configurations
+[2026-06-22T03:27:08.272Z] [SUCCESS] Configuration loaded!
+[2026-06-22T03:27:08.274Z] [INFO] 🔨 Initializing Engines...
+[2026-06-22T03:27:08.280Z] [SUCCESS] All engines initialized!
+[2026-06-22T03:27:08.282Z] [INFO] 🔌 Loading plugins...
+[2026-06-22T03:27:08.292Z] [INFO] Found 7 plugins
+[2026-06-22T03:27:08.309Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-22T03:27:08.313Z] [INFO] Initializing plugin: AIResponse
+[2026-06-22T03:27:08.325Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-22T03:27:08.330Z] [INFO] Initializing plugin: Analytics
+[2026-06-22T03:27:08.339Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-22T03:27:08.342Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-22T03:27:08.359Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-22T03:27:08.375Z] [INFO] Initializing plugin: Moderation
+[2026-06-22T03:27:08.403Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-22T03:27:08.406Z] [INFO] Initializing plugin: Support
+[2026-06-22T03:27:08.421Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-22T03:27:08.424Z] [INFO] Initializing plugin: Tournament
+[2026-06-22T03:27:08.439Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-22T03:27:08.442Z] [INFO] Initializing plugin: Voice
+[2026-06-22T03:27:08.451Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-22T03:27:08.453Z] [SUCCESS] 7 plugins loaded!
+[2026-06-22T03:27:08.456Z] [INFO] ⚡ Loading commands...
+[2026-06-22T03:27:08.489Z] [SUCCESS] 7 commands loaded!
+[2026-06-22T03:27:08.490Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-22T03:27:10.533Z] [SUCCESS] Logged in to Discord!
+[2026-06-22T03:27:10.598Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-22T03:27:10.600Z] [INFO] 📊 Serving 1 servers
+[2026-06-22T03:27:10.604Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-22T03:27:11.230Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-22T03:27:11.233Z] [INFO] 🔍 Smart discovery starting for server 1509580048745627759
+[2026-06-22T03:27:11.249Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236265: {}
+[2026-06-22T03:27:11.254Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236266: {}
+[2026-06-22T03:27:11.286Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236267: {}
+[2026-06-22T03:27:11.290Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236268: {}
+[2026-06-22T03:27:11.307Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236269: {}
+[2026-06-22T03:27:11.323Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236270: {}
+[2026-06-22T03:27:11.364Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512864274102353940: {}
+[2026-06-22T03:27:11.369Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512864521230877013: {}
+[2026-06-22T03:27:11.386Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512869303354130622: {}
+[2026-06-22T03:27:11.390Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512869414675157083: {}
+[2026-06-22T03:27:11.392Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513023191227043942: {}
+[2026-06-22T03:27:11.399Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513026404806033448: {}
+[2026-06-22T03:27:11.401Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513026519675568262: {}
+[2026-06-22T03:27:11.402Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513027287489056830: {}
+[2026-06-22T03:27:11.404Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1514289499138555987: {}
+[2026-06-22T03:27:11.417Z] [ERROR] Firebase set error at servers/1509580048745627759/discoveries/latest: {}
+[2026-06-22T03:27:11.421Z] [SUCCESS] ✅ Discovery complete: 15 channels profiled
+[2026-06-22T03:27:11.423Z] [INFO] 🤖 Auto-creating channel profiles for 1509580048745627759
+[2026-06-22T03:27:11.431Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236265: {}
+[2026-06-22T03:27:11.450Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236266: {}
+[2026-06-22T03:27:11.455Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236267: {}
+[2026-06-22T03:27:11.465Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236268: {}
+[2026-06-22T03:27:11.469Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236269: {}
+[2026-06-22T03:27:11.471Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236270: {}
+[2026-06-22T03:27:11.473Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512864274102353940: {}
+[2026-06-22T03:27:11.475Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512864521230877013: {}
+[2026-06-22T03:27:11.483Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512869303354130622: {}
+[2026-06-22T03:27:11.485Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512869414675157083: {}
+[2026-06-22T03:27:11.486Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513023191227043942: {}
+[2026-06-22T03:27:11.489Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513026404806033448: {}
+[2026-06-22T03:27:11.492Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513026519675568262: {}
+[2026-06-22T03:27:11.497Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513027287489056830: {}
+[2026-06-22T03:27:11.500Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1514289499138555987: {}
+[2026-06-22T03:27:11.502Z] [SUCCESS] ✅ Profiles: 0 created, 15 updated
+[2026-06-22T03:27:11.503Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-22T03:40:32.955Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-22T03:40:32.957Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-22T03:40:32.963Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-22T03:40:32.968Z] [SUCCESS] Firebase connected!
+[2026-06-22T03:40:32.969Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-22T03:40:32.970Z] [INFO] Event Bus initialized
+[2026-06-22T03:40:32.972Z] [SUCCESS] Event Bus ready!
+[2026-06-22T03:40:32.974Z] [INFO] ⚙️ Loading configuration...
+[2026-06-22T03:40:33.903Z] [INFO] Loaded 0 server configurations
+[2026-06-22T03:40:33.905Z] [SUCCESS] Configuration loaded!
+[2026-06-22T03:40:33.909Z] [INFO] 🔨 Initializing Engines...
+[2026-06-22T03:40:33.914Z] [SUCCESS] All engines initialized!
+[2026-06-22T03:40:33.915Z] [INFO] 🔌 Loading plugins...
+[2026-06-22T03:40:33.919Z] [INFO] Found 7 plugins
+[2026-06-22T03:40:33.934Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-22T03:40:33.949Z] [INFO] Initializing plugin: AIResponse
+[2026-06-22T03:40:33.956Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-22T03:40:33.966Z] [INFO] Initializing plugin: Analytics
+[2026-06-22T03:40:33.970Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-22T03:40:33.972Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-22T03:40:33.986Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-22T03:40:33.988Z] [INFO] Initializing plugin: Moderation
+[2026-06-22T03:40:34.016Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-22T03:40:34.018Z] [INFO] Initializing plugin: Support
+[2026-06-22T03:40:34.027Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-22T03:40:34.028Z] [INFO] Initializing plugin: Tournament
+[2026-06-22T03:40:34.035Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-22T03:40:34.037Z] [INFO] Initializing plugin: Voice
+[2026-06-22T03:40:34.039Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-22T03:40:34.042Z] [SUCCESS] 7 plugins loaded!
+[2026-06-22T03:40:34.045Z] [INFO] ⚡ Loading commands...
+[2026-06-22T03:40:34.080Z] [SUCCESS] 7 commands loaded!
+[2026-06-22T03:40:34.081Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-22T03:40:36.269Z] [SUCCESS] Logged in to Discord!
+[2026-06-22T03:40:36.331Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-22T03:40:36.335Z] [INFO] 📊 Serving 1 servers
+[2026-06-22T03:40:36.348Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-22T03:40:37.015Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-22T03:40:37.017Z] [INFO] 🔍 Smart discovery starting for server 1509580048745627759
+[2026-06-22T03:40:37.026Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236265: {}
+[2026-06-22T03:40:37.029Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236266: {}
+[2026-06-22T03:40:37.031Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236267: {}
+[2026-06-22T03:40:37.034Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236268: {}
+[2026-06-22T03:40:37.044Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236269: {}
+[2026-06-22T03:40:37.049Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236270: {}
+[2026-06-22T03:40:37.052Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512864274102353940: {}
+[2026-06-22T03:40:37.054Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512864521230877013: {}
+[2026-06-22T03:40:37.064Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512869303354130622: {}
+[2026-06-22T03:40:37.069Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512869414675157083: {}
+[2026-06-22T03:40:37.073Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513023191227043942: {}
+[2026-06-22T03:40:37.078Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513026404806033448: {}
+[2026-06-22T03:40:37.081Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513026519675568262: {}
+[2026-06-22T03:40:37.083Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513027287489056830: {}
+[2026-06-22T03:40:37.086Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1514289499138555987: {}
+[2026-06-22T03:40:37.089Z] [ERROR] Firebase set error at servers/1509580048745627759/discoveries/latest: {}
+[2026-06-22T03:40:37.092Z] [SUCCESS] ✅ Discovery complete: 15 channels profiled
+[2026-06-22T03:40:37.098Z] [INFO] 🤖 Auto-creating channel profiles for 1509580048745627759
+[2026-06-22T03:40:37.101Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236265: {}
+[2026-06-22T03:40:37.111Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236266: {}
+[2026-06-22T03:40:37.115Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236267: {}
+[2026-06-22T03:40:37.119Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236268: {}
+[2026-06-22T03:40:37.121Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236269: {}
+[2026-06-22T03:40:37.130Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1509580049773236270: {}
+[2026-06-22T03:40:37.133Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512864274102353940: {}
+[2026-06-22T03:40:37.134Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512864521230877013: {}
+[2026-06-22T03:40:37.136Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512869303354130622: {}
+[2026-06-22T03:40:37.139Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1512869414675157083: {}
+[2026-06-22T03:40:37.145Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513023191227043942: {}
+[2026-06-22T03:40:37.148Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513026404806033448: {}
+[2026-06-22T03:40:37.150Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513026519675568262: {}
+[2026-06-22T03:40:37.152Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1513027287489056830: {}
+[2026-06-22T03:40:37.154Z] [ERROR] Firebase set error at servers/1509580048745627759/channel_profiles/1514289499138555987: {}
+[2026-06-22T03:40:37.155Z] [SUCCESS] ✅ Profiles: 0 created, 15 updated
+[2026-06-22T03:40:37.162Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-22T04:08:20.400Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-22T04:08:20.403Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-22T04:08:20.416Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-22T04:08:20.419Z] [SUCCESS] Firebase connected!
+[2026-06-22T04:08:20.420Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-22T04:08:20.423Z] [INFO] Event Bus initialized
+[2026-06-22T04:08:20.425Z] [SUCCESS] Event Bus ready!
+[2026-06-22T04:08:20.429Z] [INFO] ⚙️ Loading configuration...
+[2026-06-22T04:08:21.257Z] [INFO] Loaded 0 server configurations
+[2026-06-22T04:08:21.260Z] [SUCCESS] Configuration loaded!
+[2026-06-22T04:08:21.262Z] [INFO] 🔨 Initializing Engines...
+[2026-06-22T04:08:21.273Z] [SUCCESS] All engines initialized!
+[2026-06-22T04:08:21.275Z] [INFO] 🔌 Loading plugins...
+[2026-06-22T04:08:21.284Z] [INFO] Found 7 plugins
+[2026-06-22T04:08:21.291Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-22T04:08:21.294Z] [INFO] Initializing plugin: AIResponse
+[2026-06-22T04:08:21.302Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-22T04:08:21.303Z] [INFO] Initializing plugin: Analytics
+[2026-06-22T04:08:21.306Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-22T04:08:21.308Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-22T04:08:21.320Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-22T04:08:21.321Z] [INFO] Initializing plugin: Moderation
+[2026-06-22T04:08:21.324Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-22T04:08:21.332Z] [INFO] Initializing plugin: Support
+[2026-06-22T04:08:21.336Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-22T04:08:21.338Z] [INFO] Initializing plugin: Tournament
+[2026-06-22T04:08:21.342Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-22T04:08:21.344Z] [INFO] Initializing plugin: Voice
+[2026-06-22T04:08:21.350Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-22T04:08:21.353Z] [SUCCESS] 7 plugins loaded!
+[2026-06-22T04:08:21.355Z] [INFO] ⚡ Loading commands...
+[2026-06-22T04:08:21.390Z] [SUCCESS] 7 commands loaded!
+[2026-06-22T04:08:21.390Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-22T04:08:23.521Z] [SUCCESS] Logged in to Discord!
+[2026-06-22T04:08:23.555Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-22T04:08:23.557Z] [INFO] 📊 Serving 1 servers
+[2026-06-22T04:08:23.565Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-22T04:08:24.208Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-22T04:08:24.212Z] [INFO] 🔍 Smart discovery starting for server 1509580048745627759
+[2026-06-22T04:08:26.722Z] [SUCCESS] ✅ Discovery complete: 15 channels profiled
+[2026-06-22T04:08:26.725Z] [INFO] 🤖 Auto-creating channel profiles for 1509580048745627759
+[2026-06-22T04:08:28.879Z] [SUCCESS] ✅ Profiles: 0 created, 15 updated
+[2026-06-22T04:08:28.882Z] [SUCCESS] 🎯 All servers initialized!

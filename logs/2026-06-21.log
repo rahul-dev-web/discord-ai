@@ -1,0 +1,454 @@
+[2026-06-21T14:46:01.727Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T14:46:01.729Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T14:46:01.737Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T14:46:01.743Z] [SUCCESS] Firebase connected!
+[2026-06-21T14:46:01.749Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T14:46:01.751Z] [INFO] Event Bus initialized
+[2026-06-21T14:46:01.759Z] [SUCCESS] Event Bus ready!
+[2026-06-21T14:46:01.763Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T14:46:02.496Z] [INFO] Loaded 0 server configurations
+[2026-06-21T14:46:02.498Z] [SUCCESS] Configuration loaded!
+[2026-06-21T14:46:02.500Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T14:46:02.501Z] [SUCCESS] All engines initialized!
+[2026-06-21T14:46:02.503Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T14:46:02.504Z] [INFO] Found 0 plugins
+[2026-06-21T14:46:02.505Z] [SUCCESS] ✅ Loaded 0 plugins
+[2026-06-21T14:46:02.506Z] [SUCCESS] 0 plugins loaded!
+[2026-06-21T14:46:02.506Z] [INFO] ⚡ Loading commands...
+[2026-06-21T14:46:02.508Z] [SUCCESS] 0 commands loaded!
+[2026-06-21T14:46:02.512Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T14:46:04.488Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T14:46:04.664Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T14:46:04.665Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T14:46:04.667Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T14:46:04.671Z] [ERROR] Failed to scan server: {}
+[2026-06-21T14:46:04.674Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T14:49:14.474Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T14:49:14.475Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T14:49:14.482Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T14:49:14.484Z] [SUCCESS] Firebase connected!
+[2026-06-21T14:49:14.485Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T14:49:14.487Z] [INFO] Event Bus initialized
+[2026-06-21T14:49:14.488Z] [SUCCESS] Event Bus ready!
+[2026-06-21T14:49:14.489Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T14:49:14.994Z] [INFO] Loaded 0 server configurations
+[2026-06-21T14:49:14.995Z] [SUCCESS] Configuration loaded!
+[2026-06-21T14:49:14.996Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T14:49:14.997Z] [SUCCESS] All engines initialized!
+[2026-06-21T14:49:14.998Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T14:49:14.999Z] [INFO] Found 0 plugins
+[2026-06-21T14:49:15.001Z] [SUCCESS] ✅ Loaded 0 plugins
+[2026-06-21T14:49:15.002Z] [SUCCESS] 0 plugins loaded!
+[2026-06-21T14:49:15.003Z] [INFO] ⚡ Loading commands...
+[2026-06-21T14:49:15.005Z] [SUCCESS] 0 commands loaded!
+[2026-06-21T14:49:15.006Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T14:49:17.221Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T14:49:17.246Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T14:49:17.247Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T14:49:17.250Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T14:49:17.252Z] [ERROR] Failed to scan server: {}
+[2026-06-21T14:49:17.261Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:04:06.176Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:04:06.178Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:04:06.184Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:04:06.185Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:04:06.187Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:04:06.189Z] [INFO] Event Bus initialized
+[2026-06-21T15:04:06.193Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:04:06.194Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:04:06.720Z] [ERROR] Firebase get error at configs: {}
+[2026-06-21T15:04:06.769Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:04:06.774Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:04:06.777Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:04:06.779Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:04:06.781Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:04:06.783Z] [INFO] Found 7 plugins
+[2026-06-21T15:04:06.797Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:04:06.799Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:04:06.810Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:04:06.814Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:04:06.816Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:04:06.817Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:04:06.820Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:04:06.820Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:04:06.823Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:04:06.825Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:04:06.827Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:04:06.828Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:04:06.833Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:04:06.835Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:04:06.836Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:04:06.837Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:04:06.839Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:04:06.854Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:04:06.854Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:04:09.623Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:04:09.631Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:04:09.633Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:04:09.635Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:04:09.637Z] [ERROR] Failed to scan server: {}
+[2026-06-21T15:04:09.641Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:12:41.072Z] [INFO] 📍 Joined new server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:12:41.079Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:12:41.085Z] [ERROR] Failed to scan server: {}
+[2026-06-21T15:12:41.210Z] [INFO] 🚀 Running first-time setup for IGL ESPORTS RAHUL's server
+[2026-06-21T15:13:11.348Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:13:11.349Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:13:11.354Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:13:11.355Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:13:11.356Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:13:11.357Z] [INFO] Event Bus initialized
+[2026-06-21T15:13:11.358Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:13:11.362Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:13:12.264Z] [ERROR] Firebase get error at configs: {}
+[2026-06-21T15:13:12.265Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:13:12.265Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:13:12.266Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:13:12.267Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:13:12.268Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:13:12.273Z] [INFO] Found 7 plugins
+[2026-06-21T15:13:12.281Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:13:12.282Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:13:12.287Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:13:12.288Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:13:12.290Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:13:12.291Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:13:12.296Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:13:12.298Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:13:12.301Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:13:12.303Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:13:12.308Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:13:12.309Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:13:12.315Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:13:12.316Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:13:12.317Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:13:12.318Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:13:12.318Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:13:12.341Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:13:12.342Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:13:14.280Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:13:14.297Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:13:14.299Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:13:14.301Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:13:14.304Z] [ERROR] Failed to scan server: {}
+[2026-06-21T15:13:14.309Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:14:28.160Z] [ERROR] Firebase get error at configs/1509580048745627759: {}
+[2026-06-21T15:14:54.380Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:14:54.381Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:14:54.397Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:14:54.399Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:14:54.401Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:14:54.402Z] [INFO] Event Bus initialized
+[2026-06-21T15:14:54.404Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:14:54.405Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:14:55.039Z] [ERROR] Firebase get error at configs: {}
+[2026-06-21T15:14:55.042Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:14:55.045Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:14:55.062Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:14:55.064Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:14:55.066Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:14:55.067Z] [INFO] Found 7 plugins
+[2026-06-21T15:14:55.075Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:14:55.077Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:14:55.080Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:14:55.081Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:14:55.085Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:14:55.086Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:14:55.089Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:14:55.093Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:14:55.096Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:14:55.098Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:14:55.101Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:14:55.103Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:14:55.108Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:14:55.110Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:14:55.111Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:14:55.112Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:14:55.113Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:14:55.133Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:14:55.134Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:14:57.148Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:14:57.162Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:14:57.165Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:14:57.169Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:14:57.176Z] [ERROR] Failed to scan server: {}
+[2026-06-21T15:14:57.178Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:19:56.612Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:19:56.614Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:19:56.619Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:19:56.623Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:19:56.624Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:19:56.625Z] [INFO] Event Bus initialized
+[2026-06-21T15:19:56.627Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:19:56.627Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:19:57.323Z] [ERROR] Firebase get error at configs: {}
+[2026-06-21T15:19:57.325Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:19:57.328Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:19:57.341Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:19:57.343Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:19:57.344Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:19:57.346Z] [INFO] Found 7 plugins
+[2026-06-21T15:19:57.355Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:19:57.357Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:19:57.360Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:19:57.361Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:19:57.364Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:19:57.365Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:19:57.372Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:19:57.374Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:19:57.377Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:19:57.378Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:19:57.381Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:19:57.382Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:19:57.388Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:19:57.390Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:19:57.391Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:19:57.391Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:19:57.392Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:19:57.410Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:19:57.411Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:19:59.289Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:19:59.313Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:19:59.315Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:19:59.321Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:19:59.325Z] [ERROR] Failed to scan server: {}
+[2026-06-21T15:19:59.328Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:24:52.031Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:24:52.032Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:24:52.037Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:24:52.039Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:24:52.040Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:24:52.041Z] [INFO] Event Bus initialized
+[2026-06-21T15:24:52.042Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:24:52.042Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:24:53.505Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:24:53.542Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:24:53.558Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:24:53.576Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:24:53.587Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:24:53.600Z] [INFO] Found 7 plugins
+[2026-06-21T15:24:53.612Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:24:53.619Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:24:53.623Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:24:53.628Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:24:53.638Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:24:53.639Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:24:53.642Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:24:53.643Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:24:53.654Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:24:53.655Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:24:53.659Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:24:53.660Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:24:53.673Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:24:53.674Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:24:53.675Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:24:53.676Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:24:53.677Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:24:53.708Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:24:53.709Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:25:04.980Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:25:05.016Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:25:05.018Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:25:05.021Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:25:05.025Z] [ERROR] Failed to scan server: {}
+[2026-06-21T15:25:05.027Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:26:32.541Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:26:32.544Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:26:32.556Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:26:32.558Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:26:32.559Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:26:32.560Z] [INFO] Event Bus initialized
+[2026-06-21T15:26:32.561Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:26:32.563Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:26:33.343Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:26:33.347Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:26:33.353Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:26:33.356Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:26:33.357Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:26:33.359Z] [INFO] Found 7 plugins
+[2026-06-21T15:26:33.370Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:26:33.372Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:26:33.380Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:26:33.387Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:26:33.391Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:26:33.393Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:26:33.399Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:26:33.405Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:26:33.409Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:26:33.410Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:26:33.413Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:26:33.415Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:26:33.421Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:26:33.426Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:26:33.428Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:26:33.430Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:26:33.431Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:26:33.569Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:26:33.571Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:26:36.122Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:26:36.147Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:26:36.151Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:26:36.155Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:26:36.604Z] [ERROR] Firebase set error at servers/1509580048745627759/context: {}
+[2026-06-21T15:26:36.605Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-21T15:26:36.606Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:31:12.637Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:31:12.640Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:31:12.653Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:31:12.655Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:31:12.656Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:31:12.657Z] [INFO] Event Bus initialized
+[2026-06-21T15:31:12.658Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:31:12.659Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:31:13.351Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:31:13.353Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:31:13.354Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:31:13.356Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:31:13.357Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:31:13.359Z] [INFO] Found 7 plugins
+[2026-06-21T15:31:13.370Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:31:13.374Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:31:13.379Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:31:13.388Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:31:13.392Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:31:13.395Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:31:13.411Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:31:13.421Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:31:13.424Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:31:13.427Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:31:13.429Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:31:13.439Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:31:13.458Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:31:13.461Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:31:13.475Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:31:13.479Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:31:13.522Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:31:13.556Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:31:13.558Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:31:16.294Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:31:16.307Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:31:16.309Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:31:16.311Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:31:16.938Z] [ERROR] Firebase set error at servers/1509580048745627759/context: {}
+[2026-06-21T15:31:16.940Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-21T15:31:16.941Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:31:58.654Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:31:58.656Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:31:58.663Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:31:58.669Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:31:58.670Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:31:58.672Z] [INFO] Event Bus initialized
+[2026-06-21T15:31:58.674Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:31:58.681Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:31:59.401Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:31:59.402Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:31:59.403Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:31:59.404Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:31:59.405Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:31:59.410Z] [INFO] Found 7 plugins
+[2026-06-21T15:31:59.416Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:31:59.417Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:31:59.420Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:31:59.420Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:31:59.422Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:31:59.423Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:31:59.430Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:31:59.431Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:31:59.434Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:31:59.434Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:31:59.437Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:31:59.438Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:31:59.447Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:31:59.448Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:31:59.449Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:31:59.450Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:31:59.451Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:31:59.468Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:31:59.469Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:32:03.071Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:32:03.086Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:32:03.095Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:32:03.098Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:32:03.912Z] [ERROR] Firebase set error at servers/1509580048745627759/context: {}
+[2026-06-21T15:32:03.915Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-21T15:32:03.917Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T15:40:52.812Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T15:40:52.813Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T15:40:52.817Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T15:40:52.819Z] [SUCCESS] Firebase connected!
+[2026-06-21T15:40:52.820Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T15:40:52.821Z] [INFO] Event Bus initialized
+[2026-06-21T15:40:52.822Z] [SUCCESS] Event Bus ready!
+[2026-06-21T15:40:52.823Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T15:40:53.443Z] [INFO] Loaded 0 server configurations
+[2026-06-21T15:40:53.445Z] [SUCCESS] Configuration loaded!
+[2026-06-21T15:40:53.447Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T15:40:53.449Z] [SUCCESS] All engines initialized!
+[2026-06-21T15:40:53.450Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T15:40:53.452Z] [INFO] Found 7 plugins
+[2026-06-21T15:40:53.461Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T15:40:53.463Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T15:40:53.465Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T15:40:53.466Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T15:40:53.467Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T15:40:53.468Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T15:40:53.471Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T15:40:53.472Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T15:40:53.476Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T15:40:53.478Z] [INFO] Initializing plugin: Support
+[2026-06-21T15:40:53.480Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T15:40:53.481Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T15:40:53.483Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T15:40:53.484Z] [INFO] Initializing plugin: Voice
+[2026-06-21T15:40:53.485Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T15:40:53.486Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T15:40:53.487Z] [INFO] ⚡ Loading commands...
+[2026-06-21T15:40:53.503Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T15:40:53.504Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T15:40:56.021Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T15:40:56.039Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T15:40:56.042Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T15:40:56.044Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T15:40:56.613Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-21T15:40:56.615Z] [SUCCESS] 🎯 All servers initialized!
+[2026-06-21T16:04:14.927Z] [ERROR] Groq API call failed: {}
+[2026-06-21T16:04:33.337Z] [ERROR] Groq API call failed: {}
+[2026-06-21T16:24:50.216Z] [INFO] 🚀 Starting IGL Discord Bot...
+[2026-06-21T16:24:50.217Z] [INFO] 📡 Connecting to Firebase...
+[2026-06-21T16:24:50.222Z] [SUCCESS] Firebase initialized successfully!
+[2026-06-21T16:24:50.223Z] [SUCCESS] Firebase connected!
+[2026-06-21T16:24:50.224Z] [INFO] 🔌 Initializing Event Bus...
+[2026-06-21T16:24:50.225Z] [INFO] Event Bus initialized
+[2026-06-21T16:24:50.226Z] [SUCCESS] Event Bus ready!
+[2026-06-21T16:24:50.227Z] [INFO] ⚙️ Loading configuration...
+[2026-06-21T16:24:50.937Z] [INFO] Loaded 0 server configurations
+[2026-06-21T16:24:50.939Z] [SUCCESS] Configuration loaded!
+[2026-06-21T16:24:50.940Z] [INFO] 🔨 Initializing Engines...
+[2026-06-21T16:24:50.942Z] [SUCCESS] All engines initialized!
+[2026-06-21T16:24:50.944Z] [INFO] 🔌 Loading plugins...
+[2026-06-21T16:24:50.946Z] [INFO] Found 7 plugins
+[2026-06-21T16:24:50.957Z] [INFO] 📦 Loaded plugin: AIResponse
+[2026-06-21T16:24:50.958Z] [INFO] Initializing plugin: AIResponse
+[2026-06-21T16:24:50.962Z] [INFO] 📦 Loaded plugin: Analytics
+[2026-06-21T16:24:50.962Z] [INFO] Initializing plugin: Analytics
+[2026-06-21T16:24:50.964Z] [INFO] 📦 Loaded plugin: BasePlugin
+[2026-06-21T16:24:50.965Z] [INFO] Initializing plugin: BasePlugin
+[2026-06-21T16:24:50.969Z] [INFO] 📦 Loaded plugin: Moderation
+[2026-06-21T16:24:50.971Z] [INFO] Initializing plugin: Moderation
+[2026-06-21T16:24:50.975Z] [INFO] 📦 Loaded plugin: Support
+[2026-06-21T16:24:50.976Z] [INFO] Initializing plugin: Support
+[2026-06-21T16:24:50.979Z] [INFO] 📦 Loaded plugin: Tournament
+[2026-06-21T16:24:50.980Z] [INFO] Initializing plugin: Tournament
+[2026-06-21T16:24:50.984Z] [INFO] 📦 Loaded plugin: Voice
+[2026-06-21T16:24:50.986Z] [INFO] Initializing plugin: Voice
+[2026-06-21T16:24:50.988Z] [SUCCESS] ✅ Loaded 7 plugins
+[2026-06-21T16:24:50.990Z] [SUCCESS] 7 plugins loaded!
+[2026-06-21T16:24:50.991Z] [INFO] ⚡ Loading commands...
+[2026-06-21T16:24:51.010Z] [SUCCESS] 4 commands loaded!
+[2026-06-21T16:24:51.010Z] [INFO] 🔐 Logging in to Discord...
+[2026-06-21T16:24:52.783Z] [SUCCESS] Logged in to Discord!
+[2026-06-21T16:24:52.808Z] [SUCCESS] ✅ Bot is online as Server M. Bot#8581
+[2026-06-21T16:24:52.809Z] [INFO] 📊 Serving 1 servers
+[2026-06-21T16:24:52.811Z] [INFO] 🔍 Scanning server: IGL ESPORTS RAHUL's server
+[2026-06-21T16:24:53.465Z] [SUCCESS] ✅ Context built for IGL ESPORTS RAHUL's server
+[2026-06-21T16:24:53.467Z] [SUCCESS] 🎯 All servers initialized!
