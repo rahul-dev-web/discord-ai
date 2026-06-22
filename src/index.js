@@ -9,6 +9,7 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, Collection, ActivityType } = require('discord.js');
 const fs = require('fs');
+const http = require('http');
 const path = require('path');
 
 // Import core systems
@@ -27,6 +28,8 @@ const PluginLoader = require('./core/plugin-loader');
 const Logger = require('./utils/logger');
 const ConfigManager = require('./core/config-manager');
 
+const PORT = Number(process.env.PORT) || 3000;
+
 // Create Discord client
 const client = new Client({
   intents: [
@@ -44,6 +47,7 @@ const client = new Client({
 client.commands = new Collection();
 client.plugins = new Collection();
 client.engines = {};
+client.startedAt = new Date();
 
 const PREFIX_OPTION_MAP = {
   help: {
@@ -79,6 +83,38 @@ const PREFIX_OPTION_MAP = {
     },
   },
 };
+
+/**
+ * Render Web Services must bind to a public HTTP port.
+ */
+function startHealthServer() {
+  const server = http.createServer((req, res) => {
+    if (req.url === '/' || req.url === '/health') {
+      const payload = {
+        status: 'ok',
+        discord: client.isReady() ? 'online' : 'starting',
+        uptimeSeconds: Math.round(process.uptime()),
+        startedAt: client.startedAt.toISOString(),
+      };
+
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(payload));
+      return;
+    }
+
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Not found' }));
+  });
+
+  server.listen(PORT, '0.0.0.0', () => {
+    Logger.success(`Health server listening on port ${PORT}`);
+  });
+
+  server.on('error', (error) => {
+    Logger.error('Health server failed:', error);
+    process.exit(1);
+  });
+}
 
 /**
  * Initialize all systems
@@ -415,4 +451,5 @@ process.on('unhandledRejection', error => {
 });
 
 // Start the bot
+startHealthServer();
 initializeBot();

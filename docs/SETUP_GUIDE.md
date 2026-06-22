@@ -254,22 +254,28 @@ git push -u origin main
 3. Configure:
    - **Name**: `igl-discord-bot`
    - **Environment**: Node
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
+   - **Build Command**: `npm run render:build`
+   - **Start Command**: `npm run render:start`
    - **Plan**: Free
 
 4. Add Environment Variables:
    - Click "Advanced" 
    - Add all variables from `.env`
+   - Do not set `PORT`; Render provides it automatically
 
-5. Click "Deploy Web Service"
+5. Register slash commands once:
+   - Local terminal: `npm run deploy:commands`
+   - Or Render Shell: `npm run deploy:commands`
+
+6. Click "Deploy Web Service"
 
 ### 5.4 Monitor Deployment
 
 1. Go to your Render dashboard
 2. Watch the build logs
 3. Once deployed, you'll get a unique URL
-4. Bot will start automatically
+4. Open `https://your-service.onrender.com/health`
+5. Bot will start automatically when health returns `{"status":"ok"}`
 
 ### 5.5 Keep Bot Running (Free Tier Limitation)
 

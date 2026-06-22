@@ -8,6 +8,8 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "deploy:commands": "node src/deploy-commands.js",
+    "render:build": "npm install",
+    "render:start": "npm start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup": "node scripts/setup-wizard.js",
     "deploy": "npm install && npm start"
