@@ -7,7 +7,7 @@
  */
 
 require('dotenv').config();
-const { Client, GatewayIntentBits, Collection } = require('discord.js');
+const { Client, GatewayIntentBits, Collection, ActivityType } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 
@@ -44,6 +44,41 @@ const client = new Client({
 client.commands = new Collection();
 client.plugins = new Collection();
 client.engines = {};
+
+const PREFIX_OPTION_MAP = {
+  help: {
+    strings: { category: 0 },
+  },
+  status: {
+    subcommand: 0,
+    defaultSubcommand: 'server',
+  },
+  stats: {
+    subcommand: 0,
+    defaultSubcommand: 'daily',
+    users: { user: 1 },
+  },
+  tournament: {
+    subcommand: 0,
+    defaultSubcommand: 'list',
+    strings: {
+      name: 1,
+      type: 2,
+      tournament_id: 1,
+      status: 1,
+    },
+    integers: { max_teams: 3 },
+  },
+  memory: {
+    subcommand: 0,
+    defaultSubcommand: 'rules',
+    strings: {
+      query: 1,
+      rule: 1,
+      type: 1,
+    },
+  },
+};
 
 /**
  * Initialize all systems
@@ -141,7 +176,7 @@ client.once('ready', async () => {
   client.user.setPresence({
     activities: [{
       name: 'IGL Esports 🎮',
-      type: 'WATCHING',
+      type: ActivityType.Watching,
     }],
     status: 'online',
   });
@@ -204,6 +239,9 @@ client.on('interactionCreate', async (interaction) => {
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
 
+  const handledPrefixCommand = await handlePrefixCommand(message);
+  if (handledPrefixCommand) return;
+
   // Let plugins handle messages
   for (const plugin of client.plugins.values()) {
     if (plugin.onMessage) {
@@ -215,6 +253,139 @@ client.on('messageCreate', async (message) => {
     }
   }
 });
+
+/**
+ * Handle prefix commands such as !help and !stats daily
+ */
+async function handlePrefixCommand(message) {
+  const prefix = await getPrefixForMessage(message);
+
+  if (!message.content.startsWith(prefix)) {
+    return false;
+  }
+
+  const args = parsePrefixArgs(message.content.slice(prefix.length));
+  const commandName = args.shift()?.toLowerCase();
+
+  if (!commandName) {
+    return false;
+  }
+
+  const command = client.commands.get(commandName);
+  if (!command) {
+    return false;
+  }
+
+  try {
+    const interaction = createMessageInteraction(message, commandName, args);
+    await command.execute(interaction, client);
+  } catch (error) {
+    Logger.error(`Prefix command error: ${error.message}`);
+    await message.reply('❌ An error occurred while executing this command.');
+  }
+
+  return true;
+}
+
+/**
+ * Get configured prefix for the guild
+ */
+async function getPrefixForMessage(message) {
+  if (!message.guildId || !client.configManager) {
+    return process.env.BOT_PREFIX || '!';
+  }
+
+  const config = await client.configManager.getServerConfig(message.guildId);
+  return config?.prefix || process.env.BOT_PREFIX || '!';
+}
+
+/**
+ * Split prefix arguments, keeping quoted text together
+ */
+function parsePrefixArgs(input) {
+  const args = [];
+  const regex = /"([^"]+)"|'([^']+)'|`([^`]+)`|(\S+)/g;
+  let match;
+
+  while ((match = regex.exec(input)) !== null) {
+    args.push(match[1] || match[2] || match[3] || match[4]);
+  }
+
+  return args;
+}
+
+/**
+ * Build a small interaction-compatible wrapper for message commands
+ */
+function createMessageInteraction(message, commandName, args) {
+  const optionMap = PREFIX_OPTION_MAP[commandName] || {};
+  let replyMessage = null;
+
+  const getArg = (index) => (typeof index === 'number' ? args[index] : null);
+
+  return {
+    commandName,
+    guild: message.guild,
+    guildId: message.guildId,
+    channel: message.channel,
+    user: message.author,
+    member: message.member,
+    createdTimestamp: message.createdTimestamp,
+    replied: false,
+    deferred: false,
+    options: {
+      getSubcommand() {
+        return getArg(optionMap.subcommand) || optionMap.defaultSubcommand || null;
+      },
+      getString(name) {
+        return getArg(optionMap.strings?.[name]) || null;
+      },
+      getInteger(name) {
+        const value = getArg(optionMap.integers?.[name]);
+        return value ? Number.parseInt(value, 10) : null;
+      },
+      getUser(name) {
+        const value = getArg(optionMap.users?.[name]);
+        if (!value) return null;
+
+        const userId = value.replace(/[<@!>]/g, '');
+        return message.client.users.cache.get(userId) || null;
+      },
+    },
+    async deferReply() {
+      this.deferred = true;
+      await message.channel.sendTyping();
+    },
+    async reply(payload) {
+      this.replied = true;
+      replyMessage = await message.reply(normalizeReplyPayload(payload));
+      return replyMessage;
+    },
+    async editReply(payload) {
+      const normalized = normalizeReplyPayload(payload);
+
+      if (replyMessage) {
+        return await replyMessage.edit(normalized);
+      }
+
+      this.replied = true;
+      replyMessage = await message.reply(normalized);
+      return replyMessage;
+    },
+  };
+}
+
+/**
+ * Message replies do not support ephemeral responses
+ */
+function normalizeReplyPayload(payload) {
+  if (typeof payload === 'string') {
+    return payload;
+  }
+
+  const { ephemeral, ...messagePayload } = payload;
+  return messagePayload;
+}
 
 /**
  * Handle voice state updates

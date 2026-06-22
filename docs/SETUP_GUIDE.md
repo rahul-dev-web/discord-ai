@@ -179,6 +179,8 @@ Edit `.env` file:
 ```env
 # Discord
 DISCORD_TOKEN=your_discord_bot_token
+CLIENT_ID=your_discord_application_client_id
+GUILD_ID=your_test_server_id
 
 # Firebase
 FIREBASE_API_KEY=your_api_key
@@ -205,6 +207,9 @@ PORT=3000
 ### 4.3 Test Locally
 
 ```bash
+# Register slash commands for your test server
+npm run deploy:commands
+
 # Start bot
 npm start
 

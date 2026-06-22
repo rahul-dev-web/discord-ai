@@ -4,15 +4,28 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 
+const requiredEnv = ["DISCORD_TOKEN", "CLIENT_ID", "GUILD_ID"];
+const missingEnv = requiredEnv.filter((name) => !process.env[name]);
+
+if (missingEnv.length > 0) {
+  console.error(`Missing required env vars: ${missingEnv.join(", ")}`);
+  process.exit(1);
+}
+
 const commands = [];
 
 const commandFiles = fs
-.readdirSync("./src/commands")
-.filter(file => file.endsWith(".js"));
+.readdirSync(path.join(__dirname, "commands"))
+.filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles){
 
-    const command=require(`./commands/${file}`);
+    const command = require(path.join(__dirname, "commands", file));
+
+    if (!command.data?.toJSON) {
+        console.warn(`Skipping ${file}: missing command.data`);
+        continue;
+    }
 
     commands.push(command.data.toJSON());
 
@@ -36,6 +49,6 @@ process.env.GUILD_ID
 
 );
 
-console.log("Slash commands deployed");
+console.log(`Slash commands deployed: ${commands.length}`);
 
 })();
