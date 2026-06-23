@@ -1,54 +1,32 @@
-const { REST, Routes } = require("discord.js");
-require("dotenv").config();
+require('dotenv').config();
 
-const fs = require("fs");
-const path = require("path");
-
-const requiredEnv = ["DISCORD_TOKEN", "CLIENT_ID", "GUILD_ID"];
-const missingEnv = requiredEnv.filter((name) => !process.env[name]);
-
-if (missingEnv.length > 0) {
-  console.error(`Missing required env vars: ${missingEnv.join(", ")}`);
-  process.exit(1);
-}
+const fs = require('fs');
+const path = require('path');
+const { registerSlashCommands } = require('./utils/command-registrar');
 
 const commands = [];
-
+const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs
-.readdirSync(path.join(__dirname, "commands"))
-.filter((file) => file.endsWith(".js"));
+  .readdirSync(commandsPath)
+  .filter((file) => file.endsWith('.js'));
 
-for (const file of commandFiles){
+for (const file of commandFiles) {
+  const command = require(path.join(commandsPath, file));
 
-    const command = require(path.join(__dirname, "commands", file));
+  if (!command.data?.toJSON) {
+    console.warn(`Skipping ${file}: missing command.data`);
+    continue;
+  }
 
-    if (!command.data?.toJSON) {
-        console.warn(`Skipping ${file}: missing command.data`);
-        continue;
-    }
-
-    commands.push(command.data.toJSON());
-
+  commands.push(command.data);
 }
 
-const rest=new REST({version:"10"}).setToken(process.env.DISCORD_TOKEN);
-
-(async()=>{
-
-await rest.put(
-
-Routes.applicationGuildCommands(
-
-process.env.CLIENT_ID,
-
-process.env.GUILD_ID
-
-),
-
-{body:commands}
-
-);
-
-console.log(`Slash commands deployed: ${commands.length}`);
-
+(async () => {
+  try {
+    const result = await registerSlashCommands(commands, console);
+    console.log(`Slash commands deployed: ${result.count} (${result.scope})`);
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
 })();

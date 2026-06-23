@@ -28,6 +28,7 @@ const CommandDiscoveryEngine = require('./engines/command-discovery-engine'); //
 const PluginLoader = require('./core/plugin-loader');
 const Logger = require('./utils/logger');
 const ConfigManager = require('./core/config-manager');
+const { registerSlashCommands } = require('./utils/command-registrar');
 
 const PORT = Number(process.env.PORT) || 3000;
 
@@ -171,7 +172,10 @@ async function initializeBot() {
     loadSlashCommands(client);
     Logger.success(`${client.commands.size} commands loaded!`);
 
-    // 7. Login to Discord
+    // 7. Register slash commands with Discord
+    await deploySlashCommandsOnStartup();
+
+    // 8. Login to Discord
     Logger.info('🔐 Logging in to Discord...');
     await client.login(process.env.DISCORD_TOKEN);
     Logger.success('Logged in to Discord!');
@@ -179,6 +183,23 @@ async function initializeBot() {
   } catch (error) {
     Logger.error('Failed to initialize bot:', error);
     process.exit(1);
+  }
+}
+
+/**
+ * Register commands automatically on Render/startup.
+ */
+async function deploySlashCommandsOnStartup() {
+  if (process.env.AUTO_DEPLOY_COMMANDS === 'false') {
+    Logger.info('Skipping slash command auto-deploy');
+    return;
+  }
+
+  try {
+    const result = await registerSlashCommands(client.commands, Logger);
+    Logger.success(`Slash commands ready: ${result.count} (${result.scope})`);
+  } catch (error) {
+    Logger.error(`Slash command auto-deploy failed: ${error.message}`);
   }
 }
 
