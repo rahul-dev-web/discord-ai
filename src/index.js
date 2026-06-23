@@ -24,6 +24,7 @@ const AIEngine = require('./engines/ai-engine');
 const EnhancedAIEngine = require('./engines/enhanced-ai-engine'); // Phase 10+
 const SmartDiscoveryEngine = require('./engines/smart-discovery-engine'); // Phase 11
 const MemorySystem = require('./engines/memory-system'); // Phase 12
+const CommandDiscoveryEngine = require('./engines/command-discovery-engine'); // Phase 13
 const PluginLoader = require('./core/plugin-loader');
 const Logger = require('./utils/logger');
 const ConfigManager = require('./core/config-manager');
@@ -151,12 +152,13 @@ async function initializeBot() {
     client.engines.taskManager = new TaskManager(client, db);
     client.engines.ai = new AIEngine(client, db);
     
-    // Phase 10-12 Engines
+    // Phase 10-13 Engines
     client.engines.enhancedAI = new EnhancedAIEngine(client, db);
     client.engines.discovery = new SmartDiscoveryEngine(client, db);
     client.engines.memory = new MemorySystem(client, db);
+    client.engines.commandDiscovery = new CommandDiscoveryEngine(client, db);
     
-    Logger.success('All engines initialized!');
+    Logger.success('✨ All engines initialized! (Phase 13 included)');
 
     // 5. Load Plugins
     Logger.info('🔌 Loading plugins...');
