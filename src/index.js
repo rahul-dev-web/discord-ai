@@ -23,6 +23,7 @@ const TaskManager = require('./engines/task-manager');
 const AIEngine = require('./engines/ai-engine');
 const EnhancedAIEngine = require('./engines/enhanced-ai-engine'); // Phase 10+
 const SmartDiscoveryEngine = require('./engines/smart-discovery-engine'); // Phase 11
+const WorkflowEngine = require('./engines/workflow-engine'); // Phase 12
 const MemorySystem = require('./engines/memory-system'); // Phase 12
 const CommandDiscoveryEngine = require('./engines/command-discovery-engine'); // Phase 13
 const SupportAIEngine = require('./engines/support-ai-engine'); // Phase 14
@@ -156,8 +157,11 @@ async function initializeBot() {
     
     // Phase 10-13 Engines
     client.engines.enhancedAI = new EnhancedAIEngine(client, db);
-    client.engines.discovery = new SmartDiscoveryEngine(client, db);
+    client.engines.smartDiscovery = new SmartDiscoveryEngine(client, db);
     client.engines.memory = new MemorySystem(client, db);
+    // Phase 17: Workflow Engine
+    client.engines.workflowEngine = new WorkflowEngine(client);
+    Logger.info('✅ WorkflowEngine initialized');
     client.engines.commandDiscovery = new CommandDiscoveryEngine(client, db);
     client.engines.supportAI = new SupportAIEngine(client, db);
     Logger.success('✨ All engines initialized! (Phase 13 included)');
