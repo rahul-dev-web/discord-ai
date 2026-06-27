@@ -85,6 +85,49 @@ module.exports = {
               { name: 'Completed', value: 'completed' }
             )
         )
+    )
+    .addSubcommand(subcommand =>
+      subcommand
+        .setName('match')
+        .setDescription('Manage tournament matches')
+        .addStringOption(option =>
+          option
+            .setName('action')
+            .setDescription('Match action')
+            .addChoices(
+              { name: '➕ Create Match', value: 'create' },
+              { name: '🎯 Set Result', value: 'result' },
+              { name: '📋 List Matches', value: 'list' }
+            )
+            .setRequired(true)
+        )
+        .addStringOption(option =>
+          option
+            .setName('tournament_id')
+            .setDescription('Tournament ID')
+        )
+        .addStringOption(option =>
+          option
+            .setName('team1')
+            .setDescription('Team 1 ID/name')
+        )
+        .addStringOption(option =>
+          option
+            .setName('team2')
+            .setDescription('Team 2 ID/name')
+        )
+        .addIntegerOption(option =>
+          option
+            .setName('team1_score')
+            .setDescription('Team 1 score')
+            .setMinValue(0)
+        )
+        .addIntegerOption(option =>
+          option
+            .setName('team2_score')
+            .setDescription('Team 2 score')
+            .setMinValue(0)
+        )
     ),
 
   async execute(interaction, client) {
@@ -107,6 +150,8 @@ module.exports = {
         await handleLeaderboard(interaction, client, tournamentPlugin);
       } else if (subcommand === 'list') {
         await handleList(interaction, client, tournamentPlugin);
+      } else if (subcommand === 'match') {
+        await handleMatch(interaction, client, tournamentPlugin);
       }
     } catch (error) {
       Logger.error('Tournament command error:', error);
@@ -247,4 +292,113 @@ async function handleList(interaction, client, tournamentPlugin) {
     .setTimestamp();
 
   await interaction.editReply({ embeds: [embed] });
+}
+
+async function handleMatch(interaction, client, tournamentPlugin) {
+  const action = interaction.options.getString('action');
+  const tournamentId = interaction.options.getString('tournament_id');
+
+  await interaction.deferReply();
+
+  const matchManager = client.services?.matchManager;
+  if (!matchManager) {
+    return await interaction.editReply('❌ Match manager not available');
+  }
+
+  try {
+    switch (action) {
+      case 'create': {
+        const team1 = interaction.options.getString('team1');
+        const team2 = interaction.options.getString('team2');
+
+        if (!team1 || !team2) {
+          return await interaction.editReply('❌ Both teams are required!');
+        }
+
+        const match = await matchManager.createMatch(
+          interaction.guildId,
+          tournamentId,
+          { team1, team2 }
+        );
+
+        const embed = new EmbedBuilder()
+          .setColor('#3498DB')
+          .setTitle('✅ Match Created')
+          .addFields(
+            { name: 'Team 1', value: team1, inline: true },
+            { name: 'Team 2', value: team2, inline: true },
+            { name: 'Match ID', value: match.id || 'N/A', inline: false },
+            { name: 'Status', value: 'Scheduled', inline: true }
+          )
+          .setTimestamp();
+
+        return await interaction.editReply({ embeds: [embed] });
+      }
+
+      case 'result': {
+        const team1Score = interaction.options.getInteger('team1_score');
+        const team2Score = interaction.options.getInteger('team2_score');
+
+        if (team1Score === null || team2Score === null) {
+          return await interaction.editReply('❌ Both scores are required!');
+        }
+
+        const result = await matchManager.setMatchResult(
+          interaction.guildId,
+          tournamentId,
+          { team1Score, team2Score }
+        );
+
+        const winner = team1Score > team2Score ? 'Team 1' : team1Score < team2Score ? 'Team 2' : 'Draw';
+
+        const embed = new EmbedBuilder()
+          .setColor('#2ECC71')
+          .setTitle('✅ Match Result Set')
+          .addFields(
+            { name: 'Team 1', value: `${team1Score} points`, inline: true },
+            { name: 'Team 2', value: `${team2Score} points`, inline: true },
+            { name: 'Winner', value: winner, inline: false }
+          )
+          .setTimestamp();
+
+        return await interaction.editReply({ embeds: [embed] });
+      }
+
+      case 'list': {
+        const matches = await matchManager.getMatches(interaction.guildId, tournamentId);
+
+        if (!matches || matches.length === 0) {
+          return await interaction.editReply('❌ No matches found!');
+        }
+
+        const embed = new EmbedBuilder()
+          .setColor('#7289DA')
+          .setTitle('📋 Tournament Matches')
+          .setDescription(`Found ${matches.length} match(es)`)
+          .setTimestamp();
+
+        matches.slice(0, 10).forEach((match, i) => {
+          const team1Name = match.team1 || 'Team 1';
+          const team2Name = match.team2 || 'Team 2';
+          const score = match.team1Score !== undefined && match.team2Score !== undefined
+            ? `${match.team1Score} - ${match.team2Score}`
+            : 'Pending';
+
+          embed.addFields({
+            name: `Match ${i + 1}`,
+            value: `${team1Name} vs ${team2Name}\n**Score**: ${score}`,
+            inline: false
+          });
+        });
+
+        return await interaction.editReply({ embeds: [embed] });
+      }
+
+      default:
+        return await interaction.editReply('❌ Unknown match action');
+    }
+  } catch (error) {
+    Logger.error('Match handler error:', error);
+    return await interaction.editReply(`❌ Error: ${error.message}`);
+  }
 }
