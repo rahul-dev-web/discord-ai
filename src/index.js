@@ -32,6 +32,9 @@ const Logger = require('./utils/logger');
 const ConfigManager = require('./core/config-manager');
 const { registerSlashCommands } = require('./utils/command-registrar');
 
+const DashboardServer = require('./api/server');
+
+
 const PORT = Number(process.env.PORT) || 3000;
 
 // Create Discord client
@@ -233,6 +236,8 @@ function loadSlashCommands(client) {
  * Bot ready event
  */
 client.once('ready', async () => {
+  const dashboardServer = new DashboardServer(client);
+dashboardServer.start();
   Logger.success(`✅ Bot is online as ${client.user.tag}`);
   Logger.info(`📊 Serving ${client.guilds.cache.size} servers`);
   
