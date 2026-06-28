@@ -12,7 +12,7 @@ class EnhancedAIEngine {
     this.client = client;
     this.db = database;
     this.apiKey = process.env.GROQ_API_KEY;
-    this.model = 'mixtral-8x7b-32768';
+    this.model = process.env.GROQ_MODEL;
     this.voiceContext = new Map(); // Cache voice contexts
   }
 

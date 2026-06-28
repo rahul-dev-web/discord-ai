@@ -187,7 +187,7 @@ async function handleAIStatus(interaction, client) {
       },
       {
         name: '💡 AI Model',
-        value: 'Groq: Mixtral-8x7b-32768',
+        value: 'llama-3.3-70b-versatile',
         inline: false,
       },
       {
