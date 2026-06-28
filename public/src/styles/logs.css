@@ -1,0 +1,20 @@
+.logs-page { display: flex; flex-direction: column; }
+.logs-controls { display: flex; justify-content: space-between; align-items: center; background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #BDC3C7; gap: 1rem; }
+.filter-group { display: flex; align-items: center; gap: 0.5rem; }
+.filter-group label { font-weight: 500; }
+.filter-group select { padding: 0.5rem; border: 1px solid #BDC3C7; border-radius: 4px; }
+.log-stats { display: flex; align-items: center; gap: 1rem; }
+.logs-container { flex: 1; background: white; border-radius: 8px; border: 1px solid #BDC3C7; overflow: hidden; }
+.logs-table { width: 100%; border-collapse: collapse; }
+.logs-table thead { background: #F5F7FA; border-bottom: 2px solid #BDC3C7; }
+.logs-table th { padding: 1rem; text-align: left; font-weight: 600; color: #2C3E50; font-size: 0.875rem; }
+.logs-table td { padding: 1rem; border-bottom: 1px solid #ECF0F1; }
+.log-time { font-family: monospace; font-size: 0.75rem; color: #888; }
+.type-badge { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 3px; font-size: 0.75rem; font-weight: 600; }
+.log-info .type-badge { background: #E3F2FD; color: #1976D2; }
+.log-success .type-badge { background: #E8F5E9; color: #2E7D32; }
+.log-warning .type-badge { background: #FFF3E0; color: #F57C00; }
+.log-error .type-badge { background: #FFEBEE; color: #C62828; }
+.log-message { color: #2C3E50; }
+.log-context { font-family: monospace; font-size: 0.75rem; color: #888; }
+.log-context code { background: #F5F7FA; padding: 0.25rem; border-radius: 2px; }

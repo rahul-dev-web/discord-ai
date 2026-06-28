@@ -27,13 +27,11 @@ const WorkflowEngine = require('./engines/workflow-engine'); // Phase 12
 const MemorySystem = require('./engines/memory-system'); // Phase 12
 const CommandDiscoveryEngine = require('./engines/command-discovery-engine'); // Phase 13
 const SupportAIEngine = require('./engines/support-ai-engine'); // Phase 14
+const DashboardServer = require('./api/server'); // Phase 18
 const PluginLoader = require('./core/plugin-loader');
 const Logger = require('./utils/logger');
 const ConfigManager = require('./core/config-manager');
 const { registerSlashCommands } = require('./utils/command-registrar');
-
-const DashboardServer = require('./api/server');
-
 
 const PORT = Number(process.env.PORT) || 3000;
 
@@ -236,8 +234,6 @@ function loadSlashCommands(client) {
  * Bot ready event
  */
 client.once('ready', async () => {
-  const dashboardServer = new DashboardServer(client);
-dashboardServer.start();
   Logger.success(`✅ Bot is online as ${client.user.tag}`);
   Logger.info(`📊 Serving ${client.guilds.cache.size} servers`);
   
@@ -258,6 +254,10 @@ dashboardServer.start();
     await client.engines.discovery.discoverServer(guild.id);
     await client.engines.discovery.autoCreateChannelProfiles(guild.id);
   }
+
+  // Phase 18: Initialize Dashboard Server
+  const dashboardServer = new DashboardServer(client);
+  dashboardServer.start();
 
   Logger.success('🎯 All servers initialized!');
 });
