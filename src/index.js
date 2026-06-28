@@ -251,8 +251,8 @@ client.once('ready', async () => {
     await client.engines.context.scanServer(guild);
     
     // Phase 11: Smart discovery
-    await client.engines.discovery.discoverServer(guild.id);
-    await client.engines.discovery.autoCreateChannelProfiles(guild.id);
+    await client.engines.smartDiscovery.discoverServer(guild.id);
+    await client.engines.smartDiscovery.autoCreateChannelProfiles(guild.id);
   }
 
   // Phase 18: Initialize Dashboard Server
