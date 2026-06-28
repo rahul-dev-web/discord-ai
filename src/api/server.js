@@ -12,21 +12,97 @@ const path = require('path');
 const Logger = require('../utils/logger');
 
 class DashboardServer {
-  constructor(client) {
+  constructor(client, port = Number(process.env.PORT) || 3000) {
     this.client = client;
     this.app = express();
-    this.port = process.env.DASHBOARD_PORT || 3000;
+    this.port = port;
     this.isRunning = false;
+    this.server = null;
 
     this.setupMiddleware();
     this.setupRoutes();
   }
 
   /**
+   * Require API key for mutating dashboard routes
+   */
+  requireDashboardAuth(req, res, next) {
+    const apiKey = process.env.DASHBOARD_API_KEY?.trim();
+
+    if (!apiKey) {
+      if (process.env.NODE_ENV === 'production') {
+        return res.status(503).json({ error: 'Dashboard API key not configured' });
+      }
+      return next();
+    }
+
+    const provided = req.headers['x-api-key'];
+    if (provided !== apiKey) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    return next();
+  }
+
+  /**
+   * Build chart data from workflow execution history
+   */
+  buildWorkflowChartData(history) {
+    const labels = [];
+    const total = [];
+    const success = [];
+    const failed = [];
+
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      date.setHours(0, 0, 0, 0);
+
+      labels.push(date.toLocaleDateString('en-US', { weekday: 'short' }));
+
+      let dayTotal = 0;
+      let daySuccess = 0;
+      let dayFailed = 0;
+
+      for (const entry of history) {
+        const startedAt = new Date(entry.startedAt);
+        startedAt.setHours(0, 0, 0, 0);
+
+        if (startedAt.getTime() === date.getTime()) {
+          dayTotal++;
+          if (entry.status === 'SUCCESS') {
+            daySuccess++;
+          } else if (entry.status === 'FAILED') {
+            dayFailed++;
+          }
+        }
+      }
+
+      total.push(dayTotal);
+      success.push(daySuccess);
+      failed.push(dayFailed);
+    }
+
+    return { labels, total, success, failed };
+  }
+
+  /**
    * Setup Express middleware
    */
   setupMiddleware() {
-    this.app.use(cors());
+    const allowedOrigins = process.env.CORS_ORIGINS
+      ? process.env.CORS_ORIGINS.split(',').map((origin) => origin.trim())
+      : ['http://localhost:3000'];
+
+    this.app.use(cors({
+      origin(origin, callback) {
+        if (!origin || allowedOrigins.includes('*') || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+    }));
     this.app.use(express.json());
     this.app.use(express.static(path.join(__dirname, '../../public')));
 
@@ -48,9 +124,19 @@ class DashboardServer {
    */
   setupRoutes() {
     // ==================== HEALTH CHECK ====================
+    this.app.get('/health', (req, res) => {
+      res.json({
+        status: 'ok',
+        discord: this.client.isReady?.() ? 'online' : 'starting',
+        uptimeSeconds: Math.round(process.uptime()),
+        startedAt: this.client.startedAt?.toISOString?.() || new Date().toISOString(),
+      });
+    });
+
     this.app.get('/api/health', (req, res) => {
       res.json({
         status: 'ok',
+        discord: this.client.isReady?.() ? 'online' : 'starting',
         timestamp: new Date().toISOString(),
         uptime: process.uptime(),
         environment: process.env.NODE_ENV,
@@ -120,7 +206,7 @@ class DashboardServer {
     });
 
     // Run workflow
-    this.app.post('/api/workflows/:workflowId/run', async (req, res) => {
+    this.app.post('/api/workflows/:workflowId/run', this.requireDashboardAuth.bind(this), async (req, res) => {
       try {
         const { workflowId } = req.params;
         const { guildId } = req.body;
@@ -273,35 +359,30 @@ class DashboardServer {
         }
 
         const history = workflowEngine.getExecutionHistory(guildId, 100);
-
-        // Group by day (last 7 days)
-        const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-        const data = [8, 12, 10, 15, 22, 18, 14]; // Mock data for now
-        const successData = [7, 11, 9, 14, 21, 17, 13];
-        const failureData = [1, 1, 1, 1, 1, 1, 1];
+        const chartBuckets = this.buildWorkflowChartData(history);
 
         res.json({
           success: true,
           chart: {
-            labels: days,
+            labels: chartBuckets.labels,
             datasets: [
               {
                 label: 'Workflows Executed',
-                data: data,
+                data: chartBuckets.total,
                 borderColor: '#3498DB',
                 backgroundColor: 'rgba(52, 152, 219, 0.1)',
                 tension: 0.4,
               },
               {
                 label: 'Successful',
-                data: successData,
+                data: chartBuckets.success,
                 borderColor: '#2ECC71',
                 backgroundColor: 'rgba(46, 204, 113, 0.1)',
                 tension: 0.4,
               },
               {
                 label: 'Failed',
-                data: failureData,
+                data: chartBuckets.failed,
                 borderColor: '#E74C3C',
                 backgroundColor: 'rgba(231, 76, 60, 0.1)',
                 tension: 0.4,
@@ -316,9 +397,10 @@ class DashboardServer {
 
     // ==================== LOGS ====================
 
-    this.app.get('/api/logs/:guildId', (req, res) => {
+    this.app.get('/api/logs/:guildId', async (req, res) => {
       try {
-        const limit = parseInt(req.query.limit) || 50;
+        const { guildId } = req.params;
+        const limit = parseInt(req.query.limit, 10) || 50;
         const logEngine = this.client.engines?.logging;
 
         if (!logEngine) {
@@ -327,12 +409,12 @@ class DashboardServer {
             logs: [{
               timestamp: new Date().toISOString(),
               type: 'info',
-              message: 'Dashboard API healthy',
+              message: 'Logging engine initializing',
             }],
           });
         }
 
-        const logs = logEngine.getLogs?.(limit) || [];
+        const logs = await logEngine.getLogs(guildId, limit);
 
         res.json({
           success: true,
@@ -374,10 +456,14 @@ class DashboardServer {
     });
 
     // Update settings
-    this.app.post('/api/settings/:guildId', (req, res) => {
+    this.app.post('/api/settings/:guildId', this.requireDashboardAuth.bind(this), async (req, res) => {
       try {
         const { guildId } = req.params;
         const { settings } = req.body;
+
+        if (this.client.configManager && settings) {
+          await this.client.configManager.updateServerConfig(guildId, settings);
+        }
 
         Logger.info(`⚙️ Settings updated for guild ${guildId}:`, settings);
 
@@ -410,11 +496,17 @@ class DashboardServer {
       return;
     }
 
-    this.app.listen(this.port, () => {
+    this.server = this.app.listen(this.port, '0.0.0.0', () => {
       this.isRunning = true;
-      Logger.success(`🌐 Dashboard server started on http://localhost:${this.port}`);
-      Logger.info('📊 Visit dashboard at: http://localhost:${this.port}');
-      Logger.info('📡 API endpoints available at: http://localhost:${this.port}/api/*');
+      Logger.success(`🌐 HTTP server started on http://0.0.0.0:${this.port}`);
+      Logger.info(`📊 Dashboard: http://localhost:${this.port}`);
+      Logger.info(`📡 API: http://localhost:${this.port}/api/*`);
+      Logger.info(`❤️ Health: http://localhost:${this.port}/health`);
+    });
+
+    this.server.on('error', (error) => {
+      Logger.error('HTTP server failed:', error);
+      process.exit(1);
     });
   }
 

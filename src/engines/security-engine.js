@@ -4,6 +4,7 @@
  */
 
 const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 const Logger = require('../utils/logger');
 const firebase = require('../core/firebase-config');
 
@@ -14,12 +15,15 @@ class SecurityEngine {
   }
 
   /**
-   * Hash password using Argon2-like strategy
-   * Note: For production, use bcrypt or argon2 npm package
+   * Hash password with bcrypt (supports legacy PBKDF2 verification)
    */
   hashPassword(password) {
+    return bcrypt.hashSync(password, 12);
+  }
+
+  hashPasswordLegacy(password) {
     return crypto
-      .pbkdf2Sync(password, process.env.SECURITY_SALT || 'salt', 10000, 64, 'sha256')
+      .pbkdf2Sync(password, process.env.SECURITY_SALT, 10000, 64, 'sha256')
       .toString('hex');
   }
 
@@ -27,18 +31,22 @@ class SecurityEngine {
    * Verify password
    */
   verifyPassword(password, hash) {
-    const passwordHash = this.hashPassword(password);
-    return passwordHash === hash;
+    if (!hash) return false;
+
+    if (hash.startsWith('$2a$') || hash.startsWith('$2b$')) {
+      return bcrypt.compareSync(password, hash);
+    }
+
+    return this.hashPasswordLegacy(password) === hash;
   }
 
   /**
    * Create OTP for verification
    */
   generateOTP(length = 6) {
-    const digits = '0123456789';
     let otp = '';
     for (let i = 0; i < length; i++) {
-      otp += digits.charAt(Math.floor(Math.random() * 10));
+      otp += crypto.randomInt(0, 10).toString();
     }
     return otp;
   }

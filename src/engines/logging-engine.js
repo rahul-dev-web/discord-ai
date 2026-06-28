@@ -690,6 +690,98 @@ class LoggingEngine {
   }
 
   /**
+   * Aggregate log statistics for commands and reports
+   */
+  async getLogStats(guildId, days = 7) {
+    try {
+      const fromDate = new Date();
+      fromDate.setDate(fromDate.getDate() - days);
+
+      const logs = await this.searchLogs(guildId, {
+        fromDate: fromDate.toISOString(),
+        limit: 10000,
+      });
+
+      const stats = {
+        totalLogs: logs.length,
+        errorCount: 0,
+        warningCount: 0,
+        avgDuration: 0,
+        byType: {},
+        byLevel: {},
+      };
+
+      let totalDuration = 0;
+      let durationCount = 0;
+
+      for (const log of logs) {
+        const level = log.level || 'INFO';
+        if (level === 'ERROR' || level === 'CRITICAL') {
+          stats.errorCount++;
+        }
+        if (level === 'WARNING') {
+          stats.warningCount++;
+        }
+
+        const type = log.type || 'unknown';
+        stats.byType[type] = (stats.byType[type] || 0) + 1;
+        stats.byLevel[level] = (stats.byLevel[level] || 0) + 1;
+
+        if (typeof log.duration === 'number') {
+          totalDuration += log.duration;
+          durationCount++;
+        }
+      }
+
+      stats.avgDuration = durationCount > 0 ? totalDuration / durationCount : 0;
+      return stats;
+    } catch (error) {
+      Logger.error('Get log stats error:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Export logs as CSV string
+   */
+  async exportLogsAsCSV(guildId, filters = {}) {
+    try {
+      const logs = await this.searchLogs(guildId, filters);
+      if (!logs.length) {
+        return '';
+      }
+
+      const headers = ['timestamp', 'level', 'type', 'action', 'userId', 'result', 'message'];
+      const rows = logs.map((log) => {
+        const message = String(log.message || log.details || '').replace(/"/g, '""');
+        return [
+          log.timestamp,
+          log.level,
+          log.type,
+          log.action,
+          log.userId,
+          log.result,
+          message,
+        ]
+          .map((value) => `"${value ?? ''}"`)
+          .join(',');
+      });
+
+      return [headers.join(','), ...rows].join('\n');
+    } catch (error) {
+      Logger.error('Export logs error:', error);
+      return '';
+    }
+  }
+
+  /**
+   * Get recent logs for dashboard API
+   */
+  async getLogs(guildId, limit = 50) {
+    return this.searchLogs(guildId, { limit });
+  }
+
+  /**
    * Cleanup (called on shutdown)
    */
   async cleanup() {

@@ -7,9 +7,11 @@
  */
 
 require('dotenv').config();
+const { validateEnv } = require('./utils/validate-env');
+validateEnv();
+
 const { Client, GatewayIntentBits, Collection, ActivityType } = require('discord.js');
 const fs = require('fs');
-const http = require('http');
 const path = require('path');
 
 // Import core systems
@@ -27,13 +29,23 @@ const WorkflowEngine = require('./engines/workflow-engine'); // Phase 12
 const MemorySystem = require('./engines/memory-system'); // Phase 12
 const CommandDiscoveryEngine = require('./engines/command-discovery-engine'); // Phase 13
 const SupportAIEngine = require('./engines/support-ai-engine'); // Phase 14
+const LoggingEngine = require('./engines/logging-engine'); // Phase 15
 const DashboardServer = require('./api/server'); // Phase 18
 const PluginLoader = require('./core/plugin-loader');
 const Logger = require('./utils/logger');
 const ConfigManager = require('./core/config-manager');
 const { registerSlashCommands } = require('./utils/command-registrar');
+const supportMessageListener = require('./listeners/support-messages');
 
 const PORT = Number(process.env.PORT) || 3000;
+
+const SENSITIVE_COMMAND_LIMITS = {
+  setup: { limit: 3, windowMs: 3600000 },
+  'setup-advanced': { limit: 3, windowMs: 3600000 },
+  workflow: { limit: 10, windowMs: 60000 },
+};
+
+let dashboardServer = null;
 
 // Create Discord client
 const client = new Client({
@@ -90,35 +102,38 @@ const PREFIX_OPTION_MAP = {
 };
 
 /**
- * Render Web Services must bind to a public HTTP port.
+ * Enforce per-user rate limits on slash commands
  */
-function startHealthServer() {
-  const server = http.createServer((req, res) => {
-    if (req.url === '/' || req.url === '/health') {
-      const payload = {
-        status: 'ok',
-        discord: client.isReady() ? 'online' : 'starting',
-        uptimeSeconds: Math.round(process.uptime()),
-        startedAt: client.startedAt.toISOString(),
-      };
+async function enforceCommandRateLimit(interaction) {
+  const security = client.engines.security;
+  if (!security || !interaction.guildId) {
+    return true;
+  }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(payload));
-      return;
-    }
+  const commandLimits = SENSITIVE_COMMAND_LIMITS[interaction.commandName] || {
+    limit: 20,
+    windowMs: 60000,
+  };
 
-    res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Not found' }));
-  });
+  const rateLimit = await security.checkRateLimit(
+    interaction.user.id,
+    interaction.commandName,
+    commandLimits.limit,
+    commandLimits.windowMs
+  );
 
-  server.listen(PORT, '0.0.0.0', () => {
-    Logger.success(`Health server listening on port ${PORT}`);
-  });
+  if (!rateLimit.allowed) {
+    const retryAfter = rateLimit.retryAfter
+      ? ` Try again after ${rateLimit.retryAfter.toLocaleTimeString()}.`
+      : '';
+    await interaction.reply({
+      content: `⏳ Slow down — too many \`/${interaction.commandName}\` requests.${retryAfter}`,
+      ephemeral: true,
+    });
+    return false;
+  }
 
-  server.on('error', (error) => {
-    Logger.error('Health server failed:', error);
-    process.exit(1);
-  });
+  return true;
 }
 
 /**
@@ -156,16 +171,22 @@ async function initializeBot() {
     client.engines.taskManager = new TaskManager(client, db);
     client.engines.ai = new AIEngine(client, db);
     
-    // Phase 10-13 Engines
+    // Phase 10-15 Engines
     client.engines.enhancedAI = new EnhancedAIEngine(client, db);
-    client.engines.smartDiscovery = new SmartDiscoveryEngine(client, db);
+    client.engines.discovery = new SmartDiscoveryEngine(client, db);
+    client.engines.smartDiscovery = client.engines.discovery;
     client.engines.memory = new MemorySystem(client, db);
+    client.engines.logging = new LoggingEngine(client, db);
     // Phase 17: Workflow Engine
     client.engines.workflowEngine = new WorkflowEngine(client);
     Logger.info('✅ WorkflowEngine initialized');
     client.engines.commandDiscovery = new CommandDiscoveryEngine(client, db);
     client.engines.supportAI = new SupportAIEngine(client, db);
-    Logger.success('✨ All engines initialized! (Phase 13 included)');
+    Logger.success('✨ All engines initialized! (Phase 15 included)');
+
+    // Start unified HTTP server early for Render health checks
+    dashboardServer = new DashboardServer(client, PORT);
+    dashboardServer.start();
 
     // 5. Load Plugins
     Logger.info('🔌 Loading plugins...');
@@ -249,15 +270,11 @@ client.once('ready', async () => {
   // Initialize context for all servers
   for (const guild of client.guilds.cache.values()) {
     await client.engines.context.scanServer(guild);
-    
-    // Phase 11: Smart discovery
-    await client.engines.smartDiscovery.discoverServer(guild.id);
-    await client.engines.smartDiscovery.autoCreateChannelProfiles(guild.id);
-  }
 
-  // Phase 18: Initialize Dashboard Server
-  const dashboardServer = new DashboardServer(client);
-  dashboardServer.start();
+    // Phase 11: Smart discovery
+    await client.engines.discovery.discoverServer(guild.id);
+    await client.engines.discovery.autoCreateChannelProfiles(guild.id);
+  }
 
   Logger.success('🎯 All servers initialized!');
 });
@@ -291,14 +308,49 @@ client.on('interactionCreate', async (interaction) => {
   const command = client.commands.get(interaction.commandName);
   if (!command) return;
 
+  const allowed = await enforceCommandRateLimit(interaction);
+  if (!allowed) return;
+
+  const startedAt = Date.now();
+
   try {
     await command.execute(interaction, client);
+
+    if (client.engines.logging && interaction.guildId) {
+      await client.engines.logging.logCommand(
+        interaction.guildId,
+        interaction.user.id,
+        interaction.commandName,
+        interaction.options?.data || [],
+        'success',
+        Date.now() - startedAt
+      );
+    }
   } catch (error) {
     Logger.error(`Command error: ${error.message}`);
-    await interaction.reply({
+
+    if (client.engines.logging && interaction.guildId) {
+      await client.engines.logging.logCommand(
+        interaction.guildId,
+        interaction.user.id,
+        interaction.commandName,
+        interaction.options?.data || [],
+        'failure',
+        Date.now() - startedAt,
+        error.message
+      );
+    }
+
+    const reply = {
       content: '❌ An error occurred while executing this command.',
       ephemeral: true,
-    });
+    };
+
+    if (interaction.replied || interaction.deferred) {
+      await interaction.followUp(reply);
+    } else {
+      await interaction.reply(reply);
+    }
   }
 });
 
@@ -310,6 +362,13 @@ client.on('messageCreate', async (message) => {
 
   const handledPrefixCommand = await handlePrefixCommand(message);
   if (handledPrefixCommand) return;
+
+  // Support channel auto-reply (Phase 14)
+  try {
+    await supportMessageListener.execute(message, client);
+  } catch (error) {
+    Logger.error('Support listener error:', error);
+  }
 
   // Let plugins handle messages
   for (const plugin of client.plugins.values()) {
@@ -346,6 +405,18 @@ async function handlePrefixCommand(message) {
   }
 
   try {
+    const rateLimit = await client.engines.security?.checkRateLimit(
+      message.author.id,
+      commandName,
+      SENSITIVE_COMMAND_LIMITS[commandName]?.limit || 20,
+      SENSITIVE_COMMAND_LIMITS[commandName]?.windowMs || 60000
+    );
+
+    if (rateLimit && !rateLimit.allowed) {
+      await message.reply('⏳ Slow down — too many requests for this command.');
+      return true;
+    }
+
     const interaction = createMessageInteraction(message, commandName, args);
     await command.execute(interaction, client);
   } catch (error) {
@@ -483,6 +554,19 @@ process.on('unhandledRejection', error => {
   Logger.error('Unhandled rejection:', error);
 });
 
+process.on('SIGINT', async () => {
+  if (client.engines.logging) {
+    await client.engines.logging.cleanup();
+  }
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  if (client.engines.logging) {
+    await client.engines.logging.cleanup();
+  }
+  process.exit(0);
+});
+
 // Start the bot
-startHealthServer();
 initializeBot();
