@@ -480,7 +480,7 @@ class DashboardServer {
     // ==================== STATIC FILES ====================
 
     // Serve dashboard (fallback to index.html for SPA)
-    this.app.get('/*', (req, res) => {
+    this.app.get('/*path', (req, res) => {
       if (!req.path.startsWith('/api')) {
         res.sendFile(path.join(__dirname, '../../public/index.html'), { root: '/' });
       }
