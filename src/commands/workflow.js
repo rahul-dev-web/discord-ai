@@ -333,6 +333,7 @@ async function executeWorkflow(interaction, workflowId, workflow) {
         executorId: interaction.user.id,
         executorName: interaction.user.username,
         guildId: interaction.guildId,
+        autoConfirm: true,
       }
     );
 

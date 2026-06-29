@@ -14,6 +14,8 @@
  *                                   → WorkflowMonitor
  */
 
+const { ChannelType, PermissionsBitField } = require('discord.js');
+const firebase = require('../core/firebase-config');
 const Logger = require('../utils/logger');
 
 class WorkflowEngine {
@@ -537,12 +539,17 @@ class WorkflowEngine {
             result,
           });
 
+          if (result && typeof result === 'object') {
+            Object.assign(context, result);
+          }
+
           // If step is rollbackable, add to stack
           if (step.rollbackable) {
             execution.rollbackStack.push({
               stepId: step.id,
               rollbackHandler: step.rollbackHandler || `rollback_${step.handler}`,
               context,
+              result,
             });
           }
 
@@ -586,14 +593,12 @@ class WorkflowEngine {
    */
   async executeStep(step, guildId, workflow, execution, context) {
     // Check if confirmation required
-    if (step.confirmRequired) {
-      // This would be handled by the command handler
-      // Return a confirmation request
-      return {
-        requiresConfirmation: true,
-        step,
-        confirmationMessage: `Ready to ${step.description}?`,
-      };
+    if (
+      step.confirmRequired &&
+      !context.autoConfirm &&
+      !context.confirmedStepIds?.includes(step.id)
+    ) {
+      throw new Error(`Step requires confirmation: ${step.name}`);
     }
 
     // Call the step handler
@@ -658,48 +663,204 @@ class WorkflowEngine {
    * Get step handler function
    */
   getStepHandler(handlerName) {
+    const getGuild = (client, guildId) => {
+      const guild = client.guilds.cache.get(guildId);
+      if (!guild) throw new Error('Guild not found');
+      return guild;
+    };
+
+    const safeName = (value, fallback) => String(value || fallback)
+      .toLowerCase()
+      .replace(/[^a-z0-9-]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 90) || fallback;
+
+    const createTextChannel = async (client, guildId, name, parentId = null, reason = 'Workflow automation') => {
+      const guild = getGuild(client, guildId);
+      const channel = await guild.channels.create({
+        name,
+        type: ChannelType.GuildText,
+        parent: parentId,
+        reason,
+      });
+
+      return channel;
+    };
+
     const handlers = {
       // Tournament Setup Handlers
-      'createTournamentCategory': async (guildId, context) => {
-        // Implementation
-        return { channelId: 'mock_id' };
+      'createTournamentCategory': async (guildId, context, client) => {
+        const guild = getGuild(client, guildId);
+        const tournamentName = safeName(context.tournamentName, 'tournament');
+        const category = await guild.channels.create({
+          name: `${tournamentName}-tournament`,
+          type: ChannelType.GuildCategory,
+          reason: 'Tournament setup workflow',
+        });
+
+        return { tournamentCategoryId: category.id };
       },
-      'createMainChannel': async (guildId, context) => {
-        return { channelId: 'mock_id' };
+      'createMainChannel': async (guildId, context, client) => {
+        const channel = await createTextChannel(
+          client,
+          guildId,
+          'tournament-announcements',
+          context.tournamentCategoryId
+        );
+        return { tournamentMainChannelId: channel.id };
       },
-      'createBracketChannel': async (guildId, context) => {
-        return { channelId: 'mock_id' };
+      'createBracketChannel': async (guildId, context, client) => {
+        const channel = await createTextChannel(
+          client,
+          guildId,
+          'tournament-bracket',
+          context.tournamentCategoryId
+        );
+        return { bracketChannelId: channel.id };
       },
-      'createMatchChannels': async (guildId, context) => {
-        return { channelIds: ['id1', 'id2', 'id3', 'id4', 'id5'] };
+      'createMatchChannels': async (guildId, context, client) => {
+        const guild = getGuild(client, guildId);
+        const channelIds = [];
+
+        for (let i = 1; i <= 5; i++) {
+          const channel = await guild.channels.create({
+            name: `match-room-${i}`,
+            type: ChannelType.GuildVoice,
+            parent: context.tournamentCategoryId || null,
+            reason: 'Tournament setup workflow',
+          });
+          channelIds.push(channel.id);
+        }
+
+        return { matchChannelIds: channelIds };
       },
       'initializeBracket': async (guildId, context) => {
-        return { bracketId: 'mock_bracket_id' };
+        const bracketId = `bracket_${Date.now()}`;
+        await firebase.set(`servers/${guildId}/workflow_brackets/${bracketId}`, {
+          id: bracketId,
+          tournamentName: context.tournamentName || 'Tournament',
+          type: context.tournamentType || 'squad',
+          teams: [],
+          matches: [],
+          channelId: context.bracketChannelId || null,
+          createdAt: new Date().toISOString(),
+        });
+
+        return { bracketId };
       },
-      'createLeaderboardPost': async (guildId, context) => {
-        return { messageId: 'mock_message_id' };
+      'createLeaderboardPost': async (guildId, context, client) => {
+        const guild = getGuild(client, guildId);
+        const channel = guild.channels.cache.get(context.bracketChannelId || context.tournamentMainChannelId);
+        if (!channel?.isTextBased()) throw new Error('Leaderboard channel not found');
+
+        const message = await channel.send({
+          content: [
+            `# ${context.tournamentName || 'Tournament'} Leaderboard`,
+            'No scores reported yet.',
+          ].join('\n'),
+        });
+
+        return { leaderboardMessageId: message.id };
       },
-      'sendRegistrationMessage': async (guildId, context) => {
-        return { messageId: 'mock_message_id' };
+      'sendRegistrationMessage': async (guildId, context, client) => {
+        const guild = getGuild(client, guildId);
+        const channel = guild.channels.cache.get(context.tournamentMainChannelId);
+        if (!channel?.isTextBased()) throw new Error('Tournament announcement channel not found');
+
+        const message = await channel.send({
+          content: [
+            `Registration is open for **${context.tournamentName || 'Tournament'}**.`,
+            'Staff can add teams with the tournament commands.',
+          ].join('\n'),
+        });
+
+        return { registrationMessageId: message.id };
       },
 
       // Staff Onboarding Handlers
-      'assignStaffRole': async (guildId, context) => {
-        return { roleAssigned: true, roleId: 'mock_role_id' };
+      'assignStaffRole': async (guildId, context, client) => {
+        const guild = getGuild(client, guildId);
+        const member = await guild.members.fetch(context.staffMemberId);
+        const roleName = context.staffRole || 'staff';
+        const role = guild.roles.cache.find((item) => item.name.toLowerCase() === roleName.toLowerCase());
+
+        if (!role) {
+          throw new Error(`Staff role not found: ${roleName}`);
+        }
+
+        await member.roles.add(role, 'Staff onboarding workflow');
+        return { roleAssigned: true, staffRoleId: role.id };
       },
-      'createStaffChannel': async (guildId, context) => {
-        return { channelId: 'mock_id' };
+      'createStaffChannel': async (guildId, context, client) => {
+        const guild = getGuild(client, guildId);
+        const staffMemberId = context.staffMemberId;
+        const roleId = context.staffRoleId;
+        const permissionOverwrites = [
+          {
+            id: guild.roles.everyone.id,
+            deny: [PermissionsBitField.Flags.ViewChannel],
+          },
+          {
+            id: staffMemberId,
+            allow: [
+              PermissionsBitField.Flags.ViewChannel,
+              PermissionsBitField.Flags.SendMessages,
+              PermissionsBitField.Flags.ReadMessageHistory,
+            ],
+          },
+        ];
+
+        if (roleId) {
+          permissionOverwrites.push({
+            id: roleId,
+            allow: [
+              PermissionsBitField.Flags.ViewChannel,
+              PermissionsBitField.Flags.SendMessages,
+              PermissionsBitField.Flags.ReadMessageHistory,
+            ],
+          });
+        }
+
+        const channel = await guild.channels.create({
+          name: `staff-${staffMemberId}`,
+          type: ChannelType.GuildText,
+          permissionOverwrites,
+          reason: 'Staff onboarding workflow',
+        });
+
+        return { staffChannelId: channel.id };
       },
       'setStaffPermissions': async (guildId, context) => {
+        if (!context.staffChannelId) {
+          throw new Error('Staff channel missing from workflow context');
+        }
+
         return { permissionsSet: true };
       },
       'addStaffToDatabase': async (guildId, context) => {
-        return { recordId: 'mock_record_id' };
+        const recordId = context.staffMemberId;
+        await firebase.set(`servers/${guildId}/staff/${recordId}`, {
+          userId: context.staffMemberId,
+          role: context.staffRole || 'staff',
+          channelId: context.staffChannelId || null,
+          onboardedBy: context.executorId || null,
+          onboardedAt: new Date().toISOString(),
+        });
+
+        return { recordId };
       },
-      'sendWelcomeGuide': async (guildId, context) => {
+      'sendWelcomeGuide': async (guildId, context, client) => {
+        const user = await client.users.fetch(context.staffMemberId);
+        await user.send('Welcome to the staff team. Please review the staff channels and server rules.');
         return { dmSent: true };
       },
-      'notifyTeamNewStaff': async (guildId, context) => {
+      'notifyTeamNewStaff': async (guildId, context, client) => {
+        const guild = getGuild(client, guildId);
+        const channel = guild.channels.cache.get(context.staffChannelId);
+        if (channel?.isTextBased()) {
+          await channel.send(`<@${context.staffMemberId}> has completed staff onboarding.`);
+        }
+
         return { announced: true };
       },
 

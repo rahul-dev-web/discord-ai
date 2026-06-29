@@ -21,6 +21,10 @@ class SecurityEngine {
     return bcrypt.hashSync(password, 12);
   }
 
+  async hashPasswordAsync(password) {
+    return bcrypt.hash(password, 12);
+  }
+
   hashPasswordLegacy(password) {
     return crypto
       .pbkdf2Sync(password, process.env.SECURITY_SALT, 10000, 64, 'sha256')
@@ -35,6 +39,16 @@ class SecurityEngine {
 
     if (hash.startsWith('$2a$') || hash.startsWith('$2b$')) {
       return bcrypt.compareSync(password, hash);
+    }
+
+    return this.hashPasswordLegacy(password) === hash;
+  }
+
+  async verifyPasswordAsync(password, hash) {
+    if (!hash) return false;
+
+    if (hash.startsWith('$2a$') || hash.startsWith('$2b$')) {
+      return bcrypt.compare(password, hash);
     }
 
     return this.hashPasswordLegacy(password) === hash;
@@ -58,7 +72,7 @@ class SecurityEngine {
     try {
       const path = `servers/${guildId}/otp/${userId}`;
       await firebase.set(path, {
-        otp,
+        otpHash: await this.hashPasswordAsync(otp),
         createdAt: new Date().toISOString(),
         expiresAt: new Date(Date.now() + expiryMinutes * 60000).toISOString(),
       });
@@ -84,7 +98,9 @@ class SecurityEngine {
         return false;
       }
 
-      const isValid = data.otp === otp;
+      const isValid = data.otpHash
+        ? await this.verifyPasswordAsync(otp, data.otpHash)
+        : data.otp === otp;
       if (isValid) {
         // Clear OTP after verification
         await firebase.remove(`servers/${guildId}/otp/${userId}`);
@@ -281,7 +297,9 @@ class SecurityEngine {
    */
   async storeRecoveryCodes(guildId, userId, codes) {
     try {
-      const hashedCodes = codes.map(code => this.hashPassword(code));
+      const hashedCodes = await Promise.all(
+        codes.map(code => this.hashPasswordAsync(code))
+      );
       const path = `servers/${guildId}/recovery_codes/${userId}`;
       
       await firebase.set(path, {
@@ -305,13 +323,16 @@ class SecurityEngine {
       const data = await firebase.get(`servers/${guildId}/recovery_codes/${userId}`);
       if (!data) return false;
 
-      const hashedCode = this.hashPassword(code);
-      const isValid = data.codes.includes(hashedCode);
+      const usedCodes = data.usedCodes || [];
+      const matchingHash = data.codes.find((hash) => this.verifyPassword(code, hash));
+      const isUsed = matchingHash
+        ? usedCodes.some((hash) => this.verifyPassword(code, hash))
+        : false;
 
-      if (isValid && !data.usedCodes.includes(hashedCode)) {
+      if (matchingHash && !isUsed) {
         // Mark code as used
         await firebase.update(`servers/${guildId}/recovery_codes/${userId}`, {
-          usedCodes: [...data.usedCodes, hashedCode],
+          usedCodes: [...usedCodes, matchingHash],
         });
         return true;
       }

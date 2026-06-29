@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import WorkflowCard from '../components/WorkflowCard';
 import '../styles/workflows.css';
 
-export default function WorkflowsPage({ guildId }) {
+export default function WorkflowsPage({ guildId, executorId }) {
   const [workflows, setWorkflows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedWorkflow, setSelectedWorkflow] = useState(null);
@@ -30,13 +30,17 @@ export default function WorkflowsPage({ guildId }) {
 
   const handleRunWorkflow = async (workflowId) => {
     if (executing) return;
+    if (!executorId) {
+      alert('Executor User ID is required to run workflows.');
+      return;
+    }
 
     setExecuting(true);
     try {
       const res = await fetch(`/api/workflows/${workflowId}/run`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ guildId }),
+        body: JSON.stringify({ guildId, executorId }),
       });
 
       const data = await res.json();

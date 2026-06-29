@@ -7,10 +7,11 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "build:dashboard": "esbuild public/src/App.jsx --bundle --format=esm --outfile=public/dist/app.js --loader:.jsx=jsx",
     "deploy:commands": "node src/deploy-commands.js",
-    "render:build": "npm install",
+    "render:build": "npm install && npm run build:dashboard",
     "render:start": "npm start",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test",
     "setup": "node scripts/setup-wizard.js",
     "deploy": "npm install && npm start"
   },
@@ -32,10 +33,13 @@
     "discord.js": "^14.26.4",
     "dotenv": "^16.3.1",
     "express": "^5.2.1",
-    "firebase": "^10.7.0",
-    "node-fetch": "^2.7.0"
+    "firebase": "^12.15.0",
+    "node-fetch": "^2.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "esbuild": "^0.25.0",
     "nodemon": "^3.0.2"
   },
   "engines": {

@@ -24,6 +24,9 @@ export default function App() {
   const [guildId, setGuildId] = useState(
     localStorage.getItem('guildId') || 'default-guild'
   );
+  const [executorId, setExecutorId] = useState(
+    localStorage.getItem('executorId') || ''
+  );
 
   useEffect(() => {
     checkBotHealth();
@@ -44,7 +47,7 @@ export default function App() {
   };
 
   const renderPage = () => {
-    const pageProps = { guildId, setGuildId };
+    const pageProps = { guildId, setGuildId, executorId };
 
     switch (currentPage) {
       case 'workflows':
@@ -85,6 +88,16 @@ export default function App() {
               onChange={(e) => {
                 setGuildId(e.target.value);
                 localStorage.setItem('guildId', e.target.value);
+              }}
+              className="guild-input"
+            />
+            <input
+              type="text"
+              placeholder="Executor User ID"
+              value={executorId}
+              onChange={(e) => {
+                setExecutorId(e.target.value);
+                localStorage.setItem('executorId', e.target.value);
               }}
               className="guild-input"
             />

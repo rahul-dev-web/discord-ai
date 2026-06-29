@@ -9,8 +9,35 @@ const {
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
+  ChannelType,
 } = require('discord.js');
 const Logger = require('../utils/logger');
+
+function findExistingSupportChannel(guild) {
+  return guild.channels.cache.find((channel) => {
+    if (channel.type !== ChannelType.GuildText) return false;
+
+    const name = channel.name.toLowerCase();
+    return name.includes('helpdesk') || name.includes('support') || name.includes('ticket');
+  });
+}
+
+async function findOrCreateLogChannel(guild) {
+  const existing = guild.channels.cache.find((channel) => {
+    if (channel.type !== ChannelType.GuildText) return false;
+
+    const name = channel.name.toLowerCase();
+    return name.includes('bot-log') || name.includes('audit-log') || name === 'logs';
+  });
+
+  if (existing) return existing;
+
+  return guild.channels.create({
+    name: 'bot-logs',
+    type: ChannelType.GuildText,
+    reason: 'IGL bot setup log channel',
+  });
+}
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -50,22 +77,15 @@ module.exports = {
       // Step 4: Initialize capabilities
       await client.engines.capability.initializeServerCapabilities(interaction.guildId);
 
-      // Step 5: Create default channels
-      const logChannel = await interaction.guild.channels.create({
-        name: '📋-bot-logs',
-        type: 0, // Text channel
-      });
-
-      const supportChannel = await interaction.guild.channels.create({
-        name: '💬-support',
-        type: 0,
-      });
+      // Step 5: Detect existing support channel and create only bot logs
+      const logChannel = await findOrCreateLogChannel(interaction.guild);
+      const supportChannel = findExistingSupportChannel(interaction.guild);
 
       // Step 6: Update config with channels
       await client.configManager.updateServerConfig(interaction.guildId, {
         channels: {
           logs: logChannel.id,
-          support: supportChannel.id,
+          support: supportChannel?.id || null,
         },
       });
 
@@ -96,8 +116,10 @@ module.exports = {
             inline: false,
           },
           {
-            name: '💬 Support Channel',
-            value: `${supportChannel}`,
+            name: 'Support Channel',
+            value: supportChannel
+              ? `${supportChannel} detected`
+              : 'Not detected. Create a helpdesk/support/ticket channel, then run `/setup-advanced`.',
             inline: false,
           },
           {

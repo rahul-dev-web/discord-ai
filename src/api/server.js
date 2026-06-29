@@ -209,10 +209,14 @@ class DashboardServer {
     this.app.post('/api/workflows/:workflowId/run', this.requireDashboardAuth.bind(this), async (req, res) => {
       try {
         const { workflowId } = req.params;
-        const { guildId } = req.body;
+        const { guildId, executorId, tournamentName, tournamentType } = req.body;
 
         if (!guildId) {
           return res.status(400).json({ error: 'Guild ID required' });
+        }
+
+        if (!executorId) {
+          return res.status(400).json({ error: 'Executor user ID required' });
         }
 
         const workflowEngine = this.client.engines?.workflowEngine;
@@ -221,8 +225,11 @@ class DashboardServer {
         }
 
         const execution = await workflowEngine.executeWorkflow(guildId, workflowId, {
-          executorId: 'dashboard',
+          executorId,
+          tournamentName,
+          tournamentType,
           source: 'dashboard',
+          autoConfirm: true,
         });
 
         res.json({
